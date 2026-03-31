@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Industries — SideKick Studioss</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    margin: 0 !important; padding: 0 !important;
+    width: 100% !important; min-height: 100%;
+    background: #090611 !important;
+    overflow-x: hidden !important; border: 0 !important;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+.root {
+  color: #f7f2ff;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(192,132,252,0.22), transparent 28%),
+    radial-gradient(circle at 85% 10%, rgba(168,85,247,0.18), transparent 24%),
+    radial-gradient(circle at 60% 100%, rgba(236,72,153,0.10), transparent 24%),
+    linear-gradient(180deg, #090611 0%, #10081d 38%, #090611 100%);
+  min-height: 100vh;
+  position: relative;
+  padding-top: 60px;
+}
+
+  /* BG DECORATIONS */
+  .bg-glow { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .bg-glow::before, .bg-glow::after {
+    content: ""; position: absolute;
+    width: 560px; height: 560px; border-radius: 999px;
+    filter: blur(110px); opacity: .15;
+  }
+  .bg-glow::before {
+    background: radial-gradient(circle, rgba(192,132,252,.9), transparent 62%);
+    top: -180px; left: -180px;
+    animation: gFloat 16s ease-in-out infinite;
+  }
+  .bg-glow::after {
+    background: radial-gradient(circle, rgba(168,85,247,.7), transparent 62%);
+    right: -180px; top: 280px;
+    animation: gFloat 16s ease-in-out infinite reverse; animation-delay: -7s;
+  }
+  @keyframes gFloat { 0%,100%{transform:translate(0,0)} 50%{transform:translate(28px,-22px)} }
+
+  .bg-lines {
+    position: absolute; inset: 0; z-index: 0; opacity: .11;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(circle at 50% 20%, black 25%, transparent 80%);
+  }
+
+  /* WRAPPER */
+  .wrapper {
+    padding: 80px 28px 100px;
+    max-width: 1160px;
+    margin: auto;
+    padding: 80px 28px 100px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* TOP */
+  .top {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 8px 16px; border-radius: 999px;
+    background: linear-gradient(135deg, rgba(168,85,247,.16), rgba(236,72,153,.08));
+    border: 1px solid rgba(216,180,254,0.2);
+    color: #e7d4ff; font-size: 12px; font-weight: 800;
+    letter-spacing: .08em; text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .eyebrow-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #d8b4fe;
+    animation: pdot 1.8s infinite;
+  }
+  @keyframes pdot {
+    0%{box-shadow:0 0 0 0 rgba(216,180,254,.6)}
+    70%{box-shadow:0 0 0 10px rgba(216,180,254,0)}
+    100%{box-shadow:0 0 0 0 rgba(216,180,254,0)}
+  }
+
+  .title {
+    font-size: clamp(40px, 7vw, 76px);
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -.055em;
+    margin-bottom: 18px;
+  }
+  .title-grad {
+    background: linear-gradient(135deg, #fff 0%, #e9d5ff 35%, #c084fc 62%, #60a5fa 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    background-size: 200% auto; animation: shimmer 5s linear infinite;
+  }
+  @keyframes shimmer { from{background-position:0% center} to{background-position:200% center} }
+
+  .subtitle {
+    font-size: clamp(15px, 1.8vw, 18px);
+    color: rgba(247,242,255,0.72);
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.68;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    margin: 36px auto 0;
+    max-width: 620px;
+    position: relative;
+  }
+  .search-wrap::before {
+    content: "🔍";
+    position: absolute;
+    left: 20px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+  }
+  .search-input {
+    width: 100%;
+    height: 58px;
+    border-radius: 999px;
+    border: 1px solid rgba(216,180,254,0.22);
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(14px);
+    padding: 0 24px 0 50px;
+    font-size: 15px;
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    color: #f7f2ff;
+    transition: border-color .25s ease, background .25s ease, box-shadow .25s ease;
+  }
+  .search-input::placeholder { color: rgba(247,242,255,0.38); }
+  .search-input:focus {
+    outline: none;
+    border-color: rgba(192,132,252,0.5);
+    background: rgba(255,255,255,0.09);
+    box-shadow: 0 0 0 4px rgba(168,85,247,0.12);
+  }
+
+  /* RESULT COUNT */
+  .result-count {
+    text-align: center;
+    margin: 24px 0 28px;
+    font-size: 13px;
+    color: rgba(247,242,255,0.46);
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  /* CARD */
+  .card {
+    padding: 26px 24px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025));
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative; overflow: hidden;
+    transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+    cursor: default;
+  }
+  .card::after {
+    content: "";
+    position: absolute; inset: auto -32px -32px auto;
+    width: 130px; height: 130px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(168,85,247,.14), transparent 68%);
+    transition: opacity .3s ease; opacity: .4;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(216,180,254,.24);
+    box-shadow: 0 20px 54px rgba(4,0,18,.3);
+  }
+  .card:hover::after { opacity: 1; }
+
+  .icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+    display: block;
+    position: relative; z-index: 1;
+    transition: transform .3s ease;
+  }
+  .card:hover .icon { transform: scale(1.12) rotate(-4deg); }
+
+  .card h3 {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -.03em;
+    margin-bottom: 9px;
+    position: relative; z-index: 1;
+    color: #f7f2ff;
+  }
+
+  .desc {
+    font-size: 13px;
+    color: rgba(247,242,255,0.68);
+    line-height: 1.65;
+    margin-bottom: 14px;
+    position: relative; z-index: 1;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    position: relative; z-index: 1;
+  }
+
+  .tag {
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: rgba(168,85,247,.1);
+    border: 1px solid rgba(192,132,252,.18);
+    color: #ddd6fe;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  /* EMPTY STATE */
+  .empty {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .empty h3 {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -.03em;
+    margin-bottom: 8px;
+    color: rgba(247,242,255,0.6);
+  }
+  .empty p {
+    font-size: 14px;
+    color: rgba(247,242,255,0.38);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .wrapper { padding: 60px 18px 80px; }
+    .grid { grid-template-columns: 1fr; }
+    .title { font-size: 36px; }
+  }
+  @media (max-width: 420px) {
+    .wrapper { padding: 52px 14px 72px; }
+  }
+</style>
+  <link rel="stylesheet" href="nav.css">
+</head>
+<body>
+<header class="sk-nav">
+  <div class="sk-nav-inner">
+    <a class="sk-nav-logo" href="index.html">SideKick<span>Studioss</span></a>
+    <nav class="sk-nav-links">
+      <a href="product.html">Product</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="industries.html">Industries</a>
+    </nav>
+    <a class="sk-nav-cta" href="https://app.sidekickstudioss.com/">Sign In</a>
+    <button class="sk-nav-toggle" onclick="this.closest('.sk-nav').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+  <div class="sk-nav-mobile">
+    <a href="product.html">Product</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="industries.html">Industries</a>
+    <a href="https://app.sidekickstudioss.com/">Sign In &rarr;</a>
+  </div>
+</header>
+
+<div class="root">
+  <div class="bg-glow"></div>
+  <div class="bg-lines"></div>
+
+  <div class="wrapper">
+
+    <div class="top">
+      <div class="eyebrow"><span class="eyebrow-dot"></span>Supported Industries</div>
+      <h1 class="title">Find Your <span class="title-grad">Industry</span></h1>
+      <p class="subtitle">Search through the industries supported by SideKick Studioss and find the system built for your business.</p>
+      <div class="search-wrap">
+        <input id="searchInput" class="search-input" placeholder="Search industries like roofing, car detailing, fitness...">
+      </div>
+    </div>
+
+    <div id="resultCount" class="result-count">Showing 11 industries</div>
+
+    <div id="industryGrid" class="grid">
+
+      <div class="card" data-search="car detailing auto detailing ceramic coating paint correction">
+        <span class="icon">🚗</span>
+        <h3>Car Detailing</h3>
+        <p class="desc">Generate ceramic coating and detailing bookings automatically.</p>
+        <div class="tags">
+          <span class="tag">Ceramic Coating</span>
+          <span class="tag">Paint Correction</span>
+          <span class="tag">Detailing Leads</span>
+        </div>
+      </div>
+
+      <div class="card" data-search="chiropractic chiropractor clinic spine therapy">
+        <span class="icon">🦴</span>
+        <h3>Chiropractic</h3>
+        <p class="desc">Book consultations and attract new patients consistently.</p>
+        <div class="tags">
+          <span class="tag">Consultations</span>
+          <span class="tag">New Patients</span>
+        </div>
+      </div>
+
+      <div class="card" data-search="physical therapy pt rehab recovery">
+        <span class="icon">💪</span>
+        <h3>Physical Therapy</h3>
+        <p class="desc">Campaign systems designed for rehab and therapy clinics.</p>
+        <div class="tags">
+          <span class="tag">Recovery Programs</span>
+          <span class="tag">Patient Leads</span>
+        </div>
+      </div>
+
+      <div class="card" data-search="cleaning services house cleaning office cleaning">
+        <span class="icon">🧼</span>
+        <h3>Cleaning Services</h3>
+        <p class="desc">Generate recurring home and office cleaning clients.</p>
+        <div class="tags">
+          <span class="tag">Home Cleaning</span>
+          <span class="tag">Recurring Clients</span>
+        </div>
+      </div>
+
+      <div class="card" data-search="fitness personal trainer gym coaching">
+        <span class="icon">🏋️</span>
+        <h3>Fitness / Personal Training</h3>
+        <p class="desc">Bring in consultation bookings and membership leads.</p>
+        <div class="tags">
+          <span class="tag">Consult Calls</span>
+          <span class="tag">Membership</span>
+        </div>
+      </div>
+
+      <div class="card" data-search="flooring installation tile hardwood">
+        <span class="icon">🪵</span>
+        <h3>Flooring</h3>
+        <p class="desc">Get installation leads and home renovation clients.</p>
+        <div class="tags">
+          <span class="tag">Install Leads</span>
+        </div>
+      </div>
+
+      <div class="card" data-search="landscaping lawn care yard maintenance">
+        <span class="icon">🌿</span>
+        <h3>Landscape / Lawn Care</h3>
+        <p class="desc">Generate recurring lawn and landscaping jobs.</p>
+        <div class="tags">
+          <span class="tag">Lawn Maintenance</span>
+        </div>
+      </div>
+
+      <div class="card" data-search="plumbing plumber repair pipes">
+        <span class="icon">🔧</span>
+        <h3>Plumbing</h3>
+        <p class="desc">Bring in high intent emergency service leads.</p>
+        <div class="tags">
+          <span class="tag">Service Calls</span>
+        </div>
+      </div>
+
+      <div class="card" data-search="pool services pool cleaning maintenance">
+        <span class="icon">🏊</span>
+        <h3>Pool Services</h3>
+        <p class="desc">Fill your route with pool maintenance clients.</p>
+        <div class="tags">
+          <span class="tag">Maintenance</span>
+        </div>
+      </div>
+
+      <div class="card" data-search="roofing roofer roof replacement">
+        <span class="icon">🏠</span>
+        <h3>Roofing</h3>
+        <p class="desc">Get inspection requests and roof replacement leads.</p>
+        <div class="tags">
+          <span class="tag">Inspections</span>
+        </div>
+      </div>
+
+      <div class="card" data-search="spa massage wellness relaxation">
+        <span class="icon">🪷</span>
+        <h3>Spas &amp; Massage</h3>
+        <p class="desc">Fill appointment slots with new wellness clients.</p>
+        <div class="tags">
+          <span class="tag">Appointments</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="emptyState" class="empty">
+      <h3>No industries found</h3>
+      <p>Try a different search term.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  var searchInput = document.getElementById('searchInput');
+  var cards = document.querySelectorAll('.card');
+  var resultCount = document.getElementById('resultCount');
+  var emptyState = document.getElementById('emptyState');
+
+  function updateResults() {
+    var query = searchInput.value.toLowerCase();
+    var visible = 0;
+    cards.forEach(function(card) {
+      var text = card.dataset.search;
+      if (text.includes(query)) {
+        card.style.display = 'block';
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    resultCount.innerText = 'Showing ' + visible + ' ' + (visible === 1 ? 'industry' : 'industries');
+    emptyState.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  searchInput.addEventListener('input', updateResults);
+</script>
+
+<footer class="sk-footer">
+  <div class="sk-footer-inner">
+    <a class="sk-footer-logo" href="index.html">SideKick<span>Studioss</span></a>
+    <nav class="sk-footer-links">
+      <a href="index.html">Home</a>
+      <a href="product.html">Product</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="industries.html">Industries</a>
+    </nav>
+    <p class="sk-footer-copy">&copy; 2025 SideKick Studioss &middot; <a href="mailto:contact@sidekickstudioss.net">contact@sidekickstudioss.net</a></p>
+  </div>
+</footer>
+</body>
+</html>
