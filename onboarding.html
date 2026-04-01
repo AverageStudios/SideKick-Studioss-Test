@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'DM Sans', Arial, sans-serif;
+}
+
+body {
+  background: #0A0A0F;
+  color: #F0EFFF;
+}
+
+/* subtle radial glow behind hero */
+body::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 600px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(123,92,250,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.wrapper {
+  max-width: 1080px;
+  margin: auto;
+  padding: 0 28px 100px;
+  position: relative;
+}
+
+/* ─── HERO ─── */
+.hero {
+  text-align: center;
+  padding: 100px 20px 90px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(123,92,250,0.1);
+  border: 1px solid rgba(123,92,250,0.28);
+  border-radius: 100px;
+  padding: 7px 18px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #9B7EFF;
+  margin-bottom: 30px;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9B7EFF;
+  animation: pulse 2s infinite;
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(42px, 6vw, 68px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.hero h1 span {
+  background: linear-gradient(130deg, #B89EFF 0%, #7B5CFA 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 19px;
+  color: #8884A8;
+  max-width: 540px;
+  margin: 0 auto 44px;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 30px;
+  border-radius: 11px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #7B5CFA, #5534E0);
+  color: white;
+  box-shadow: 0 4px 28px rgba(123,92,250,0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(123,92,250,0.5);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.05);
+  color: #F0EFFF;
+  border: 1px solid rgba(123,92,250,0.25);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  border-color: rgba(123,92,250,0.6);
+  background: rgba(123,92,250,0.08);
+}
+
+/* ─── DIVIDER ─── */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(123,92,250,0.22), transparent);
+  margin: 0 0 80px;
+}
+
+/* ─── SECTION HEADER ─── */
+.sec {
+  margin-bottom: 44px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7B5CFA;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  margin-bottom: 14px;
+}
+
+.section-sub {
+  color: #8884A8;
+  font-size: 16px;
+  max-width: 480px;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+/* ─── STEPS ─── */
+.steps-wrap {
+  margin-bottom: 90px;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.step-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(123,92,250,0.18);
+  border-radius: 20px;
+  padding: 36px 30px;
+  transition: transform .25s, background .25s, border-color .25s, box-shadow .25s;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+  background: rgba(123,92,250,0.07);
+  border-color: rgba(123,92,250,0.4);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+
+.step-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #7B5CFA;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.step-icon {
+  font-size: 30px;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.step-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.step-card p {
+  font-size: 14.5px;
+  color: #8884A8;
+  line-height: 1.75;
+}
+
+.step-card p strong {
+  color: #9B7EFF;
+  font-weight: 500;
+}
+
+/* ─── FEATURES ─── */
+.features-wrap {
+  margin-bottom: 90px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.feature-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(123,92,250,0.18);
+  border-radius: 16px;
+  padding: 24px 22px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: background .2s, border-color .2s;
+}
+
+.feature-item:hover {
+  background: rgba(123,92,250,0.07);
+  border-color: rgba(123,92,250,0.4);
+}
+
+.feature-icon {
+  font-size: 20px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  background: rgba(123,92,250,0.13);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-text h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.feature-text p {
+  font-size: 13.5px;
+  color: #8884A8;
+  line-height: 1.65;
+}
+
+/* ─── YOUTUBE ─── */
+.yt-wrap {
+  margin-bottom: 90px;
+}
+
+.yt-block {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(123,92,250,0.18);
+  border-radius: 20px;
+  padding: 36px;
+  display: flex;
+  gap: 36px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.yt-thumb {
+  width: 280px;
+  min-width: 200px;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #1a1a2e, #12122a);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(123,92,250,0.2);
+  text-decoration: none;
+  flex-shrink: 0;
+  font-size: 44px;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.yt-thumb:hover {
+  border-color: rgba(123,92,250,0.5);
+  box-shadow: 0 0 40px rgba(123,92,250,0.2);
+}
+
+.yt-content h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.yt-content p {
+  color: #8884A8;
+  font-size: 15px;
+  margin-bottom: 24px;
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+/* ─── RESOURCES ─── */
+.resources-wrap {
+  margin-bottom: 90px;
+}
+
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.support-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(123,92,250,0.18);
+  border-radius: 16px;
+  padding: 26px 22px;
+  text-decoration: none;
+  color: #F0EFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  transition: transform .2s, border-color .2s, background .2s, box-shadow .2s;
+}
+
+.support-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(123,92,250,0.5);
+  background: rgba(123,92,250,0.07);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+}
+
+.support-card .s-icon { font-size: 24px; }
+
+.support-card h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.support-card p {
+  font-size: 13px;
+  color: #8884A8;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.support-card .arrow {
+  font-size: 12px;
+  color: #7B5CFA;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ─── CTA ─── */
+.cta-block {
+  background: rgba(123,92,250,0.07);
+  border: 1px solid rgba(123,92,250,0.25);
+  border-radius: 24px;
+  padding: 72px 40px;
+  text-align: center;
+}
+
+.cta-block h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-bottom: 14px;
+}
+
+.cta-block p {
+  color: #8884A8;
+  font-size: 17px;
+  max-width: 420px;
+  margin: 0 auto 36px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .support-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 680px) {
+  .steps-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .yt-thumb { width: 100%; min-width: unset; }
+  .yt-block { flex-direction: column; }
+  .hero { padding: 70px 0 60px; }
+}
+
+@media (max-width: 520px) {
+  .support-grid { grid-template-columns: 1fr; }
+  .cta-block { padding: 48px 24px; }
+  .wrapper { padding: 0 16px 80px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- ─── HERO ─── -->
+  <div class="hero">
+    <div class="badge"><span class="badge-dot"></span>Welcome to Your System</div>
+    <h1>You're In.<br><span>Let's Get You Live.</span></h1>
+    <p>Your done-for-you marketing system is ready. Here's everything you need to get set up and start capturing leads — fast.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="http://app.sidekickstudioss.com" target="_blank">Open Your Dashboard →</a>
+      <a class="btn btn-secondary" href="https://www.youtube.com/@sidekickstudioss" target="_blank">Watch Tutorials</a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─── STEPS ─── -->
+  <div class="steps-wrap">
+    <div class="sec">
+      <div class="section-label">Step-by-Step</div>
+      <h2 class="section-title">Getting Started in 4 Steps</h2>
+      <p class="section-sub">Follow these and you'll be live and capturing leads within the hour.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">Step 01</div>
+        <span class="step-icon">📩</span>
+        <h3>Check Your Email & Set Your Password</h3>
+        <p>Right after purchase, SideKick Studioss sent you a welcome email with your login link and a temporary password. Open it, click the link, and create your new password.<br><br><strong>Can't find it? Check your spam folder.</strong></p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">Step 02</div>
+        <span class="step-icon">🖥️</span>
+        <h3>Log Into Your Dashboard</h3>
+        <p>Once your password is set, head to <strong>app.sidekickstudioss.com</strong> anytime. Everything is pre-built — your funnels, automations, and pipeline are already waiting for you.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">Step 03</div>
+        <span class="step-icon">📣</span>
+        <h3>Launch Your First Ad</h3>
+        <p>Go to the Ad Templates section inside your dashboard. Pick the template built for your industry, connect your Facebook/Meta account, and go live. Our ads are tested and proven — no guesswork needed.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">Step 04</div>
+        <span class="step-icon">📊</span>
+        <h3>Watch Leads Roll In</h3>
+        <p>Once your ad is live, leads flow directly into your pipeline. Your automated follow-up texts and emails kick in instantly — all you have to do is show up and close the deals.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─── FEATURES ─── -->
+  <div class="features-wrap">
+    <div class="sec">
+      <div class="section-label">Your System</div>
+      <h2 class="section-title">Everything Built Into Your Account</h2>
+      <p class="section-sub">No plugins. No third-party tools. Everything you need lives in one place.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-text">
+          <h4>Proven Ad Templates</h4>
+          <p>Done-for-you Meta ad creatives built for your industry. Plug in your details and launch.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-text">
+          <h4>Automated Follow-Up</h4>
+          <p>SMS and email sequences that instantly reach new leads and increase your show rate.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔁</div>
+        <div class="feature-text">
+          <h4>Lead Pipeline & CRM</h4>
+          <p>See every lead's status at a glance and move them from new → booked → closed.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">⭐</div>
+        <div class="feature-text">
+          <h4>Review Booster</h4>
+          <p>Automated review requests sent at the perfect moment to build your 5-star reputation.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📅</div>
+        <div class="feature-text">
+          <h4>Appointment Booking</h4>
+          <p>Built-in calendar so leads can book directly — no back-and-forth needed.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📝</div>
+        <div class="feature-text">
+          <h4>Sales Scripts & Templates</h4>
+          <p>Word-for-word scripts, texts, and emails so you always know exactly what to say.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">💬</div>
+        <div class="feature-text">
+          <h4>Unified Inbox</h4>
+          <p>All your texts, emails, and DMs in one view. Never miss a lead again.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📈</div>
+        <div class="feature-text">
+          <h4>Reporting Dashboard</h4>
+          <p>Real-time visibility into ad spend, leads, appointments, and revenue closed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─── YOUTUBE ─── -->
+  <div class="yt-wrap">
+    <div class="sec">
+      <div class="section-label">Learn Fast</div>
+      <h2 class="section-title">Watch. Learn. Win.</h2>
+      <p class="section-sub">Our YouTube channel has walkthroughs for every part of your system.</p>
+    </div>
+    <div class="yt-block">
+      <a href="https://www.youtube.com/@sidekickstudioss" target="_blank" class="yt-thumb">▶️</a>
+      <div class="yt-content">
+        <h3>SideKick Studioss on YouTube</h3>
+        <p>New to the platform? Start with our Getting Started playlist. We walk through every section of your account — from launching your first ad to reading your reports — so you move with confidence from day one.</p>
+        <div class="btn-row" style="justify-content:flex-start">
+          <a class="btn btn-primary" href="https://www.youtube.com/@sidekickstudioss" target="_blank">Visit Our Channel →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─── RESOURCES ─── -->
+  <div class="resources-wrap">
+    <div class="sec">
+      <div class="section-label">Resources</div>
+      <h2 class="section-title">Everything at Your Fingertips</h2>
+      <p class="section-sub">Quick links to every tool, channel, and resource you need.</p>
+    </div>
+    <div class="support-grid">
+      <a href="http://app.sidekickstudioss.com" target="_blank" class="support-card">
+        <div class="s-icon">🖥️</div>
+        <h4>Your Dashboard</h4>
+        <p>Log into your SideKick account and access everything.</p>
+        <div class="arrow">Open Dashboard →</div>
+      </a>
+      <a href="https://www.youtube.com/@sidekickstudioss" target="_blank" class="support-card">
+        <div class="s-icon">▶️</div>
+        <h4>YouTube Tutorials</h4>
+        <p>Step-by-step walkthroughs for every feature in your system.</p>
+        <div class="arrow">Watch Now →</div>
+      </a>
+      <a href="https://www.instagram.com/sidekickstudiosss/" target="_blank" class="support-card">
+        <div class="s-icon">📸</div>
+        <h4>Instagram</h4>
+        <p>Tips, wins, and updates from the SideKick team.</p>
+        <div class="arrow">Follow Us →</div>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61578692610726" target="_blank" class="support-card">
+        <div class="s-icon">💬</div>
+        <h4>Facebook Community</h4>
+        <p>Connect with other SideKick clients and our team.</p>
+        <div class="arrow">Join Now →</div>
+      </a>
+      <a href="https://www.sidekickstudioss.com/product" target="_blank" class="support-card">
+        <div class="s-icon">📦</div>
+        <h4>Product Overview</h4>
+        <p>A full breakdown of everything included in your plan.</p>
+        <div class="arrow">Explore →</div>
+      </a>
+      <a href="https://www.sidekickstudioss.com" target="_blank" class="support-card">
+        <div class="s-icon">🤝</div>
+        <h4>Contact Support</h4>
+        <p>Our team is here when you need us. Reach out anytime.</p>
+        <div class="arrow">Get Help →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ─── CTA ─── -->
+  <div class="cta-block">
+    <h2>Ready to Get Your First Lead?</h2>
+    <p>Your system is live. Your funnels are built. All you have to do is turn it on.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="http://app.sidekickstudioss.com" target="_blank">Open My Dashboard →</a>
+      <a class="btn btn-secondary" href="https://www.youtube.com/@sidekickstudioss" target="_blank">Watch Getting Started</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
